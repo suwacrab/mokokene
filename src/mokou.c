@@ -54,7 +54,7 @@ void mokou_rect(mokou *fuji,s32 x,s32 y,s32 w,s32 h,u32 pix)
 }
 
 /*	--	img funcs	--	*/
-void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,u32 dx,u32 dy)
+void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy)
 {
 	u32 x,y,w,h;
 	SDL_Rect blitrect = { 0,0,src->w,src->h };

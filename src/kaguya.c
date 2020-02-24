@@ -34,6 +34,7 @@ void kaguya_init(kaguya *hime,u32 w,u32 h,char *caption)
 	hime->fuji = fuji;
 	hime->img_bank = img_bank;
 	hime->fnt_bank = fnt_bank;
+	// player setting
 	player_init(p1,hime);
 	hime->p1 = p1;
 }

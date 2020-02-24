@@ -40,6 +40,6 @@ extern void mokou_pset_fillp(mokou *fuji,u32 x,u32 y,u32 pix,u16 fillp);
 extern void mokou_rect(mokou *fuji,s32 x,s32 y,s32 w,s32 h,u32 pix);
 
 /*	--	img funcs	--	*/
-extern void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,u32 dx,u32 dy);
+extern void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy);
 
 #endif

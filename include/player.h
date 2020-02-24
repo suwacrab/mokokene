@@ -3,11 +3,10 @@
 */
 
 #include "kbase.h"
+#include "fade.h"
 #include "mokou.h"
 #include "keine.h"
-
-struct kaguya;
-typedef struct kaguya kaguya;
+#include "kaguya.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H

@@ -3,10 +3,10 @@
 #include "mokou.h"
 #include "kosuzu.h"
 
+struct player;
 
 #ifndef KAGUYA_H
 #define KAGUYA_H
-typedef struct player player;
 
 /*	--	structs	--a	*/
 typedef struct
@@ -15,7 +15,7 @@ typedef struct
 	keine *kami;
 	mokou *fuji;
 	// game vars
-	player *p1;
+	struct player *p1;
 	// asset vars
 	mokou **img_bank;
 	kosuzu **fnt_bank;

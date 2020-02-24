@@ -4,9 +4,6 @@
 
 #include "kbase.h"
 #include "kaguya.h"
-#include "mokou.h"
-#include "keine.h"
-#include "kosuzu.h"
 #include "player.h"
 
 #include "fade.h"
@@ -45,8 +42,10 @@ int main()
 	// init
 	init_eys();
 	init_asset();
+	assert(p1 != NULL);
 	assert(fuji != NULL);
 	assert(kami != NULL);
+	printf("all set!\n");
 	// main loop
 	while( !(kami->do_quit) )
 	{
@@ -68,19 +67,21 @@ void init_eys()
 	kaguya_init(hime,WIDTH,HEIGHT,"huh?");
 	kami = hime->kami;
 	fuji = hime->fuji;
+	printf("p1: %p\n",hime->p1);
+	p1 = hime->p1;
 }
 
 void init_asset()
 {
 	// img loading
 	kaguya_loadimg(hime,0,"gfx/testtile.png");
+	kaguya_loadimg(hime,1,"gfx/player-proto.png");
 }
 
 void update()
 {
 	// main update
 	player_updt(p1);
-	printf("updated\n");
 }
 
 void draw()

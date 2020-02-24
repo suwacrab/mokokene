@@ -10,6 +10,7 @@ void player_init(player *plr,kaguya *hime)
 	vec2_set(&plr->dir,0,0);
 	plr->last_shotframe = 0;
 	
+	plr->hime = hime;
 	plr->kami = hime->kami;
 	plr->fuji = hime->fuji;
 	// debug
@@ -18,7 +19,6 @@ void player_init(player *plr,kaguya *hime)
 
 void player_updt(player *plr)
 {
-	printf("updating input...");
 	player_updtinp(plr);
 }
 
@@ -69,6 +69,7 @@ void player_drawship(player *plr)
 	s32 dx = pos->x>>8;
 	s32 dy = pos->y>>8;	
 	// drawin
-	mokou_rect(plr->fuji,dx-8,dy-8,16,16,1);
+	mokou *plr_img = plr->hime->img_bank[1];
+	mokou_blit(plr_img,NULL,plr->fuji,dx,dy);
 }
 
