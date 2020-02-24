@@ -1,7 +1,8 @@
 #include "player.h"
+#include "kaguya.h"
 
 /*	--	main functions	--	*/
-void player_init(player *plr,keine *kami,mokou *fuji)
+void player_init(player *plr,kaguya *hime)
 {
 	// initializin
 	plr->hp = 3;
@@ -9,14 +10,15 @@ void player_init(player *plr,keine *kami,mokou *fuji)
 	vec2_set(&plr->dir,0,0);
 	plr->last_shotframe = 0;
 	
-	plr->kami = kami;
-	plr->fuji = fuji;
+	plr->kami = hime->kami;
+	plr->fuji = hime->fuji;
 	// debug
 	printf("initialized player. [ADDR: %p]\n",plr);
 }
 
 void player_updt(player *plr)
 {
+	printf("updating input...");
 	player_updtinp(plr);
 }
 
@@ -68,9 +70,5 @@ void player_drawship(player *plr)
 	s32 dy = pos->y>>8;	
 	// drawin
 	mokou_rect(plr->fuji,dx-8,dy-8,16,16,1);
-	// debug
-	char posstr[0x20]; vec2_str(pos,posstr);
-	char dirstr[0x20]; vec2_str(dir,dirstr);
-	printf("pos: %s\ndir: %s\n",posstr,dirstr);
 }
 

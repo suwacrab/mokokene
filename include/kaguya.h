@@ -3,12 +3,12 @@
 #include "mokou.h"
 #include "kosuzu.h"
 
-#include "player.h"
 
 #ifndef KAGUYA_H
 #define KAGUYA_H
+typedef struct player player;
 
-/*	--	structs	--	*/
+/*	--	structs	--a	*/
 typedef struct
 {
 	// window vars

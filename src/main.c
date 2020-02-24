@@ -9,6 +9,8 @@
 #include "kosuzu.h"
 #include "player.h"
 
+#include "fade.h"
+
 // standard1 is 320x240
 // standard2 is 256x192
 // standard3 is 160x144
@@ -29,14 +31,6 @@ kosuzu *borefont = NULL; // basic font
 kosuzu *bobofont = NULL;
 // game vars
 player *p1 = NULL;
-// misc vars
-const u16 fade_p[0x10] = // LUT for fillp fading.
-{
-	0x8000,0x8020,0xA020,0xA0A0,
-	0xA4A0,0xA5A0,0xA5A4,0xA5A5,
-	0xADA5,0xAFA5,0xAFAD,0xAFAF,
-	0xEFAF,0xFFAF,0xFFEF,0xFFFF
-};
 
 // funcs
 void init_eys();
@@ -51,7 +45,8 @@ int main()
 	// init
 	init_eys();
 	init_asset();
-
+	assert(fuji != NULL);
+	assert(kami != NULL);
 	// main loop
 	while( !(kami->do_quit) )
 	{
@@ -85,6 +80,7 @@ void update()
 {
 	// main update
 	player_updt(p1);
+	printf("updated\n");
 }
 
 void draw()

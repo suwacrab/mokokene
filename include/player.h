@@ -6,6 +6,9 @@
 #include "mokou.h"
 #include "keine.h"
 
+struct kaguya;
+typedef struct kaguya kaguya;
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -17,13 +20,14 @@ typedef struct
 	s8 hp;
 	// input vars
 	u32 last_shotframe;
-	// fb vars
+	// EYS vars
+	kaguya *hime;
 	keine *kami;
 	mokou *fuji;
 } player;
 
 /*	--	main functions	--	*/
-extern void player_init(player *plr,keine *kami,mokou *fuji);
+extern void player_init(player *plr,kaguya *hime);
 extern void player_updt(player *plr);
 extern void player_draw(player *plr);
 
