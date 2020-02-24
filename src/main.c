@@ -1,6 +1,5 @@
 /* basic shmup
-	* TODO: get movement system before 16:00.
-	* TODO: get shooting done before 18:00.
+	* suwacrab 2020-02-22
 */
 
 #include "kbase.h"
@@ -23,27 +22,14 @@
 kaguya *hime = NULL;
 mokou *fuji = NULL;
 keine *kami = NULL;
-
 // img vars
-typedef struct { char *fname;mokou *img; } mokou_img;
-mokou_img img_bank[] = // array of images
-{
-	{ "gfx/testtile.png",NULL },
-	{ NULL,NULL }
-};
-kosuzu font_bank[] = // array of fonts
-{
-	{ 4,6,NULL,"gfx/borefont.png" },
-	{ 8,8,NULL,"gfx/bobofont.png" },
-	{ 0,0,NULL,NULL }
-};
-kosuzu *borefont = &font_bank[0];
-kosuzu *bobofont = &font_bank[1];
+mokou **img_bank = NULL; // LUT for images
+kosuzu **fnt_bank = NULL; // LUT for fonts.
+kosuzu *borefont = NULL; // basic font
+kosuzu *bobofont = NULL;
 // game vars
-player *plrs = NULL;
 player *p1 = NULL;
 // misc vars
-u32 revs = 0; // revision number
 const u16 fade_p[0x10] = // LUT for fillp fading.
 {
 	0x8000,0x8020,0xA020,0xA0A0,
@@ -53,10 +39,8 @@ const u16 fade_p[0x10] = // LUT for fillp fading.
 };
 
 // funcs
-void init();
-
-void load_imgs();
-void load_font();
+void init_eys();
+void init_asset();
 
 void update();
 void draw();
@@ -65,8 +49,8 @@ void draw();
 int main()
 {
 	// init
-	init_kene();
-	init_game();
+	init_eys();
+	init_asset();
 
 	// main loop
 	while( !(kami->do_quit) )
@@ -82,58 +66,21 @@ int main()
 	return 0;
 }
 
-void init_kene()
+void init_eys()
 {
-	// main mokokene setup
-	kami = malloc(sizeof(keine));
-	fuji = malloc(sizeof(mokou));
-	keine_init(kami,"mokokene engine",NULL,WIDTH,HEIGHT);
-	mokou_init(fuji,WIDTH,HEIGHT);
-	// palette copying
-	RGBA32 *famipal = keine_loadhexpal("pals/famicube.hex",0x40);
-	keine_initpal(kami,famipal,0x40);
-	free(famipal);
-	// image/font loading
-	load_imgs();
-	load_font();
+	// main init
+	hime = malloc(sizeof(kaguya));
+	kaguya_init(hime,WIDTH,HEIGHT,"huh?");
+	kami = hime->kami;
+	fuji = hime->fuji;
 }
 
-void init_game()
+void init_asset()
 {
-	// player init
-	plrs = malloc(sizeof(player)*4);
-	for(u32 i=0; i<4; i++)
-	{
-		player_init(&plrs[i],kami,fuji); 
-	}
-	p1 = &plrs[0];
+	// img loading
+	kaguya_loadimg(hime,0,"gfx/testtile.png");
 }
 
-void load_imgs()
-{
-	for(u32 imgid = 0; img_bank[imgid].fname != NULL; imgid++)
-	{
-		mokou_img *curimg = &img_bank[imgid]; // the current image struct
-		char *fname = curimg->fname;
-		curimg->img = malloc(sizeof(mokou)); // mallocate it's image...
-		mokou_loadimg(curimg->img,kami->mainfb,fname); // then load using keine's fb.
-		u32 w = curimg->img->w;
-		u32 h = curimg->img->h;
-		printf("loaded img '%s'! [SIZE: %d,%d] [ID: %02X]\n",fname,w,h,imgid);
-	}
-}
-void load_font()
-{
-	for(u32 fntid = 0;font_bank[fntid].fname != NULL; fntid++)
-	{
-		kosuzu *curfont = &font_bank[fntid]; // current font struct
-		char *fname = curfont->fname;
-		u32 w,h;
-		w = curfont->w; h = curfont->h;
-		kosuzu_init(curfont,kami->mainfb,fname,w,h);
-		printf("loaded font '%s'! [SIZE: %d,%d] [ID: %02X]\n",fname,w,h,fntid);
-	}
-}
 void update()
 {
 	// main update
@@ -147,4 +94,5 @@ void draw()
 	mokou_clear(fuji,7);
 	// main drawin
 	player_draw(p1);
+	// hope this works
 }

@@ -25,7 +25,7 @@ typedef struct
 void kaguya_init(kaguya *hime,u32 w,u32 h,char *caption);
 
 /*	--	load functions	--	*/
-mokou *kaguya_loadimg(kaguya *hime,char *fname,u32 index);
-kosuzu *kaguya_loadfont(kaguya *hime,char *fname,u32 w,u32 h,u32 index);
+mokou *kaguya_loadimg(kaguya *hime,u32 index,char *fname);
+kosuzu *kaguya_loadfont(kaguya *hime,u32 index,char *fname,u32 w,u32 h);
 
 #endif

@@ -37,7 +37,7 @@ void kaguya_init(kaguya *hime,u32 w,u32 h,char *caption)
 }
 
 /*	--	load functions	--	*/
-mokou *kaguya_loadimg(kaguya *hime,char *fname,u32 index)
+mokou *kaguya_loadimg(kaguya *hime,u32 index,char *fname)
 {
 	// vars
 	mokou **img_bank = hime->img_bank;
@@ -48,7 +48,7 @@ mokou *kaguya_loadimg(kaguya *hime,char *fname,u32 index)
 	return cur_img;
 }
 
-kosuzu *kaguya_loadfont(kaguya *hime,char *fname,u32 w,u32 h,u32 index)
+kosuzu *kaguya_loadfont(kaguya *hime,u32 index,char *fname,u32 w,u32 h)
 {
 	// vars
 	kosuzu **fnt_bank = hime->fnt_bank;
