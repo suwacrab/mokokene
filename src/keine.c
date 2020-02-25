@@ -6,7 +6,10 @@ void keine_init(keine *kami,char *caption,char *icon,u32 w,u32 h)
 {
 	// initializing SDL
 	if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
-	{ printf("couldn't init sdl... (%s)\n",SDL_GetError()); }
+	{ 
+		printf("couldn't init sdl... (%s)\n",SDL_GetError()); 
+		exit(-1);
+	}
 	IMG_Init(IMG_INIT_PNG);
 	// initializing surfaces
 	s32 window_flags = SDL_SWSURFACE | SDL_HWPALETTE;

@@ -12,8 +12,7 @@
 #define PLAYER_H
 
 /*	--	structs	--	*/
-typedef struct
-{
+typedef struct player {
 	// basic vars
 	VEC2 pos,dir;
 	s8 hp;

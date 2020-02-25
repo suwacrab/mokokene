@@ -61,18 +61,18 @@ void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy)
 	if(srcrect == NULL) srcrect = &blitrect;
 	x = srcrect->x; y = srcrect->y;
 	w = srcrect->w; h = srcrect->h;
-	
-	for(u32 oy=0; oy<h; oy++)
+
+	for(s32 oy=0; oy<h; oy++)
 	{
-		u32 ly = oy+dy;
-		for(u32 ox=0; ox<w; ox++)
+		s32 ly = oy+dy;
+		for(s32 ox=0; ox<w; ox++)
 		{
-			u32 lx = ox+dx;
-			mokou_pset(dst,dx+ox,dy+oy,mokou_pget(src,x+ox,y+oy));
+			s32 lx = ox+dx;
+			mokou_pset(dst,lx,ly,mokou_pget(src,x+ox,y+oy));
 			// if lx is out of dst or ox is out of src's range, exit.
-			if((lx>dst->w) || (ox>src->w)) break;
+			//if((lx>dst->w) || (ox>src->w)) break;
 		}
-		if((ly>dst->h) || (oy>src->h)) break;
+		//if((ly>dst->h) || (oy>src->h)) break;
 	}
 }
 

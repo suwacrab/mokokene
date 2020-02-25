@@ -20,7 +20,7 @@ NAME = build/mokokene
 	$(CC) -c -o $@ $< $(INC) -Wall -Wextra
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^ $(INC) $(LIBS)
+	$(CC) -o $@ $^ $(INC) $(LIBS) -g
 
 clean:
 	rm $(OBJS)

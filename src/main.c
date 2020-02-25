@@ -42,9 +42,6 @@ int main()
 	// init
 	init_eys();
 	init_asset();
-	assert(p1 != NULL);
-	assert(fuji != NULL);
-	assert(kami != NULL);
 	printf("all set!\n");
 	// main loop
 	while( !(kami->do_quit) )
