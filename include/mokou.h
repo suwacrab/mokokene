@@ -36,8 +36,11 @@ extern pix8 mokou_pget(mokou *fuji,u32 x,u32 y);
 extern void mokou_pset(mokou *fuji,u32 x,u32 y,u8 pix);
 extern void mokou_pset_fillp(mokou *fuji,u32 x,u32 y,u32 pix,u16 fillp);
 
-/*	--	rect funcs	--	*/
+/*	--	fill funcs	--	*/
 extern void mokou_rect(mokou *fuji,s32 x,s32 y,s32 w,s32 h,u32 pix);
+extern void mokou_trifilltop(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c);
+extern void mokou_trifillbot(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c);
+extern void mokou_trifill(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c);
 
 /*	--	img funcs	--	*/
 extern void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy);

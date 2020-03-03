@@ -12,7 +12,7 @@ LIBS = -lm -lSDL -lSDL_image
 
 #	--	objs, names
 OBJS := src/main.o src/fade.o src/mokou.o src/keine.o
-OBJS += src/kosuzu.o src/player.o src/kaguya.o
+OBJS += src/kosuzu.o src/player.o src/kaguya.o src/link.o
 NAME = build/mokokene
 
 #	--	main event

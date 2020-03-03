@@ -14,7 +14,7 @@
 /*	--	structs	--	*/
 typedef struct player {
 	// basic vars
-	VEC2 pos,dir;
+	VEC2 pos,dir; // vectors in 24.8 fixed point fmt
 	s8 hp;
 	// input vars
 	u32 last_shotframe;

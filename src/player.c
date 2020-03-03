@@ -65,7 +65,6 @@ void player_drawship(player *plr)
 {
 	// vars
 	VEC2 *pos = &plr->pos;
-	VEC2 *dir = &plr->dir;
 	s32 dx = pos->x>>8;
 	s32 dy = pos->y>>8;	
 	// drawin

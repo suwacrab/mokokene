@@ -45,13 +45,39 @@ void mokou_pset(mokou *fuji,u32 x,u32 y,u8 pix)
 		if(pat_pix) (*mokou_pread(fuji,x,y)) = pix;
 }
 
-/*	--	rect funcs	--	*/
+/*	--	fill funcs	--	*/
 void mokou_rect(mokou *fuji,s32 x,s32 y,s32 w,s32 h,u32 pix)
 {
 	for(s32 ly=y; ly<(y+h); ly++)
 		for(s32 lx=x; lx<(x+w); lx++)
 			mokou_pset(fuji,lx,ly,pix);
 }
+void mokou_trifilltop(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c);
+
+void mokou_trifillbot(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c)
+{
+	float inv1 = (float)(v2->x-v1->x) / (float)(v2->y-v1->y);
+	float inv2 = (float)(v3->x-v1->x) / (float)(v3->y-v1->y);
+	printf("%f %f\n",inv1,inv2);
+	float x1 = (float)(v1->x);
+	float x2 = (float)(v1->x);
+
+	for(s32 scany = v1->y; scany<=v2->y; scany++)
+	{
+		// draw line from x1 to x2
+		s32 inc = 1;
+		s32 start = (s32)x1;
+		s32 end = (s32)x2;
+		if(x1 > x2) {inc = -1; start = (s32)x2; end = (s32)x1; }
+		for(s32 x = start; x!=end; x += inc)
+		{ mokou_pset(fuji,x,scany,c); }
+		if(x1 > x2) { printf("? (%f,%f)\n",x1,x2); exit(-1); }
+		x1 += inv1;
+		x2 += inv2;
+	}
+}
+
+void mokou_trifill(mokou *fuji,VEC2 *v1,VEC2 *v2,VEC2 *v3,pix8 c);
 
 /*	--	img funcs	--	*/
 void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy)
@@ -62,10 +88,10 @@ void mokou_blit(mokou *src,SDL_Rect *srcrect,mokou *dst,s32 dx,s32 dy)
 	x = srcrect->x; y = srcrect->y;
 	w = srcrect->w; h = srcrect->h;
 
-	for(s32 oy=0; oy<h; oy++)
+	for(s32 oy=0; oy<(s32)h; oy++)
 	{
 		s32 ly = oy+dy;
-		for(s32 ox=0; ox<w; ox++)
+		for(s32 ox=0; ox<(s32)w; ox++)
 		{
 			s32 lx = ox+dx;
 			mokou_pset(dst,lx,ly,mokou_pget(src,x+ox,y+oy));

@@ -14,8 +14,8 @@
 // widescreen1 is 480x270
 // widescreen2 is 424x240
 // widescreen3 is 384x216
-#define WIDTH (114)
-#define HEIGHT (160)
+#define WIDTH (256)
+#define HEIGHT (256)
 
 // eiyashou team
 kaguya *hime = NULL;
@@ -48,8 +48,11 @@ int main()
 	{
 		// updating
 		update();
-		// drawing
+		// drawin
 		draw();
+		// trifillin
+		fuji->fillp = lu_fade[0xF>>1];
+		mokou_rect(fuji,0,0,32,32,1);
 		// final blit
 		keine_mokou(kami,fuji);
 	}
@@ -62,9 +65,9 @@ void init_eys()
 	// main init
 	hime = malloc(sizeof(kaguya));
 	kaguya_init(hime,WIDTH,HEIGHT,"huh?");
+	// eiyashou team
 	kami = hime->kami;
 	fuji = hime->fuji;
-	printf("p1: %p\n",hime->p1);
 	p1 = hime->p1;
 }
 
