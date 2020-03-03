@@ -50,9 +50,6 @@ int main()
 		update();
 		// drawin
 		draw();
-		// trifillin
-		fuji->fillp = lu_fade[0xF>>1];
-		mokou_rect(fuji,0,0,32,32,1);
 		// final blit
 		keine_mokou(kami,fuji);
 	}
@@ -76,6 +73,12 @@ void init_asset()
 	// img loading
 	kaguya_loadimg(hime,0,"gfx/testtile.png");
 	kaguya_loadimg(hime,1,"gfx/player-proto.png");
+	// font loading
+	kaguya_loadfont(hime,0,"gfx/borefont.png",4,6);
+	// LUT asset settin
+	img_bank = hime->img_bank;
+	fnt_bank = hime->fnt_bank;
+	borefont = img_bank[0];
 }
 
 void update()

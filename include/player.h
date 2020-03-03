@@ -13,12 +13,19 @@
 #define PLAYER_H
 
 /*	--	structs	--	*/
+typedef struct plr_shot {
+	VEC2 pos,dir;
+} plr_shot;
+
 typedef struct player {
 	// basic vars
 	VEC2 pos,dir; // vectors in 24.8 fixed point fmt
 	s8 hp;
-	// input vars
-	u32 last_shotframe;
+	// shot vars
+	link *shot0;
+	link *lastshot;
+	u32 shotcount;
+	u32 shottimer;
 	// EYS vars
 	kaguya *hime;
 	keine *kami;
@@ -37,5 +44,6 @@ extern void player_updtshot(player *plr);
 
 /*	--	draw functions	--	*/
 extern void player_drawship(player *plr);
+extern void player_drawshot(player *plr);
 
 #endif

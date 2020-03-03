@@ -23,7 +23,7 @@ typedef struct
 	bool do_quit;
 	// misc vars
 	u32 framerate;
-	s16 time;
+	u32 time;
 	clock_t last_frame;
 } keine;
 
