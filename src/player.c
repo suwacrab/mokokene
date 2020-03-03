@@ -1,5 +1,4 @@
 #include "player.h"
-#include "kaguya.h"
 
 /*	--	main functions	--	*/
 void player_init(player *plr,kaguya *hime)
@@ -58,6 +57,11 @@ void player_updtmove(player *plr)
 	if(k_state[SDLK_RIGHT]) dir->x += spd;
 
 	vec2_add(pos,dir);
+}
+
+void player_updtshot(player *plr)
+{
+
 }
 
 /*	--	draw functions	--	*/

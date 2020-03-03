@@ -3,6 +3,7 @@
 */
 
 #include "kbase.h"
+#include "link.h"
 #include "fade.h"
 #include "mokou.h"
 #include "keine.h"
@@ -32,6 +33,7 @@ extern void player_draw(player *plr);
 /*	--	update functions	--	*/
 extern void player_updtinp(player *plr);
 extern void player_updtmove(player *plr);
+extern void player_updtshot(player *plr);
 
 /*	--	draw functions	--	*/
 extern void player_drawship(player *plr);
